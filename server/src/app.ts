@@ -4,12 +4,12 @@ import routes from "./routes";
 
 const app: Application = express();
 
-const corsAppliction = cors({
+const corsOptions = {
   origin: "*",
-  credentials: true,
-});
+  optionsSuccessStatus: 200,
+}
 
-app.use(corsAppliction);
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use("/api/v1", routes);

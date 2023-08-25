@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
-import { Player } from "../db/game.repository";
+import { Player, Record } from "../db/game.repository";
 import GameService from "../services";
+import { log } from "console";
 
 const gameService = new GameService();
 
@@ -25,8 +26,22 @@ export const gameController = {
       player2: Player;
     };
 
+    log(player1, player2);
+
     const game = await gameService.recordGame({ player1, player2 });
 
     res.status(201).json(game);
+  },
+
+  updateGameResult: async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const result = req.body as Record;
+
+    const game = await gameService.updateGameResult({
+      id,
+      result,
+    });
+
+    res.status(200).json(game);
   },
 };

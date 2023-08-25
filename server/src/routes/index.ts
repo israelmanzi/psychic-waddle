@@ -5,8 +5,9 @@ import { gameController } from "../controllers";
 const routes = Router();
 
 routes
-  .get("/:id", errorHandler(gameController.getGame))
+  .get("/game/:id", errorHandler(gameController.getGame))
   .get("/recent", errorHandler(gameController.getRecentGames))
-  .post("/record", errorHandler(gameController.recordGame));
+  .post("/record", errorHandler(gameController.recordGame))
+  .patch("/result/:id", errorHandler(gameController.updateGameResult));
 
 export default routes;
