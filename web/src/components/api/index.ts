@@ -1,9 +1,10 @@
-
 import { Game, Player } from "../../types";
+
+const API_URL = "http://localhost:3001";
 
 export async function fetchRecentGame() {
   try {
-    const response = await fetch("http://localhost:3001/api/v1/recent");
+    const response = await fetch(`${API_URL}/recent`);
 
     if (response.status === 404) return null;
 
@@ -15,7 +16,7 @@ export async function fetchRecentGame() {
 
 export async function fetchGame({ id }: { id: string | undefined }) {
   try {
-    const response = await fetch(`http://localhost:3001/api/v1/game/${id}`);
+    const response = await fetch(`${API_URL}/game/${id}`);
 
     if (response.status === 404) return null;
 
@@ -35,7 +36,7 @@ export async function saveRecord({
   game: Game | null;
 }) {
   try {
-    const response = await fetch(`http://localhost:3001/api/v1/result/${id}`, {
+    const response = await fetch(`${API_URL}/result/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -68,7 +69,7 @@ export async function recordGame({ player1, player2 }: {
   player2: Player;
 }) {
   try {
-    const response = await fetch("http://localhost:3001/api/v1/record", {
+    const response = await fetch(`${API_URL}/record`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
