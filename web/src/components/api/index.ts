@@ -1,10 +1,10 @@
 import { Game, Player } from "../../types";
 
-const API_URL = "http://localhost:3001";
+const API_URL = "http://localhost:8080/api/v1";
 
 export async function fetchRecentGame() {
   try {
-    const response = await fetch(`${API_URL}/recent`);
+    const response = await fetch(`${API_URL}/recent`);    
 
     if (response.status === 404) return null;
 
@@ -80,6 +80,7 @@ export async function recordGame({ player1, player2 }: {
       }),
     });
 
+    console.log(response)
     if (response.status !== 201) throw new Error("Error creating game!");
 
     return await response.json();

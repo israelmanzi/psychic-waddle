@@ -22,29 +22,29 @@ export default function Home() {
 
     return (
         <div>
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col md:flex-row items-center justify-between">
                 <Header title="Recent Games" />
-                <Button onClick={() => navigate('/newgame')}>New game </Button>
+                <Button onClick={() => navigate('/newgame')}>New game</Button>
             </div>
             {loading && <p className="text-center text-xl mt-10 text-primary">Loading...</p>}
-            {!recentGames && !loading && <p className="text-center text-xl mt-10 text-primary">No recent games</p>}
+            {!recentGames && !loading && <p className="text-center text-xs mt-10 text-primary md:text-base  ">No recent games</p>}
             {recentGames && recentGames.length > 0 && (
                 <div className="mt-8">
                     <table className="table-auto w-full">
                         <thead>
                             <tr>
-                                <th className="px-4 py-2">Player 1</th>
-                                <th className="px-4 py-2">Player 2</th>
+                                <th className="px-4 py-2 font-semibold md:text-lg lg:text-xl">Player 1</th>
+                                <th className="px-4 py-2 font-semibold md:text-lg lg:text-xl">Player 2</th>
                             </tr>
                         </thead>
                         <tbody>
                             {recentGames.map((game: Game) => (
                                 <tr key={game.id}>
                                     <td className="border px-4 py-2">
-                                        {game.player1.name} ( {game.player1.repr} ) -- <span className="text-primary text-xl">{game.result?.score.X}</span>
+                                        <span className="text-base md:text-lg lg:text-xl">{game.player1.name} ({game.player1.repr})</span> -- <span className="text-primary text-xl">{game.result?.score.X}</span>
                                     </td>
                                     <td className="border px-4 py-2">
-                                        <span className="text-primary text-xl">{game.result?.score.O}</span> -- {game.player2.name} ( {game.player2.repr} )
+                                        <span className="text-primary text-xl">{game.result?.score.O}</span> -- <span className="text-base md:text-lg lg:text-xl">{game.player2.name} ({game.player2.repr})</span>
                                     </td>
                                 </tr>
                             ))}

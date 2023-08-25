@@ -40,7 +40,7 @@ export default function NewGame() {
 
             navigate(`/game/${response.id}`);
         } catch (error) {
-            setError('Oops! Something went wrong. Please try again.');
+            setError('Oops! Something went wrong. Please try again.' + error);
         } finally {
             setLoading(false);
         }

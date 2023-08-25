@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { Player, Record } from "../db/game.repository";
 import GameService from "../services";
-import { log } from "console";
 
 const gameService = new GameService();
 
@@ -25,8 +24,6 @@ export const gameController = {
       player1: Player;
       player2: Player;
     };
-
-    log(player1, player2);
 
     const game = await gameService.recordGame({ player1, player2 });
 
